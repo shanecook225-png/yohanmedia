@@ -3,54 +3,127 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Yohan Media — One Page Animé</title>
+<title>Yohan Media — One Page Animé Noël</title>
 
 <style>
 :root {
-  --bg: #050507;
-  --card: #0d0d12;
+  --bg: #127433;
+  --card: #a21616;
   --muted: #a3a3b2;
-  --accent: #ff0050;
-  --accent-2: #00f2ea;
+  --accent: #f1f1f1;
+  --accent-2: #ffffff;
   --radius: 14px;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: 'Poppins', sans-serif; background: var(--bg); color: #e9e9ef; scroll-behavior: smooth; }
 .container { width: 90%; max-width: 1200px; margin: auto; padding: 20px; }
-.site-header { position: sticky; top: 0; background: rgba(0,0,0,0.7); backdrop-filter: blur(6px); display: flex; justify-content: space-between; align-items: center; padding: 10px 0; z-index: 50; }
-.logo { color: var(--accent); font-weight: 800; font-size: 22px; text-decoration: none; }
+
+/* --- Police Noël --- */
+@font-face {
+    font-family: "NoelFont";
+    src: url("assets/fonts/NoelFont.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* --- Site Header --- */
+.site-header {
+  position: sticky;
+  top: 0;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(6px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  z-index: 50;
+  box-shadow: 0 0 20px rgba(255,0,0,0.25),
+              0 0 20px rgba(0,255,0,0.25);
+}
+.logo {
+  color: var(--accent);
+  font-weight: 800;
+  font-size: 22px;
+  text-decoration: none;
+  text-shadow: 0 0 8px rgba(255,0,0,0.6), 0 0 8px rgba(0,255,0,0.6);
+  font-family: "NoelFont", 'Poppins', sans-serif;
+  position: relative;
+}
+.logo::before {
+  content: "🎅"; /* Chapeau de Noël */
+  position: absolute;
+  top: -12px;
+  left: -12px;
+  font-size: 18px;
+}
+
+/* --- Nav --- */
 .nav a { color: var(--muted); margin-left: 20px; text-decoration: none; padding: 6px 12px; border-radius: 8px; transition: all 0.3s; }
 .nav a:hover { color: #fff; background: linear-gradient(90deg, rgba(255,0,80,0.1), rgba(0,242,234,0.05)); box-shadow: 0 6px 20px rgba(0,0,0,0.5); }
 .burger { display: none; font-size: 24px; background: none; border: none; color: var(--muted); cursor: pointer; }
+
+/* --- Hero --- */
 .hero { display: grid; grid-template-columns: 1fr 480px; gap: 30px; align-items: center; padding: 80px 0; opacity: 0; transform: translateY(30px); transition: all 1s ease; }
 .hero.visible { opacity: 1; transform: translateY(0); }
-.hero h1 { font-size: 48px; background: linear-gradient(90deg, var(--accent), var(--accent-2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: gradientMove 5s infinite linear; }
+.hero h1 { font-size: 48px; background: linear-gradient(90deg, var(--accent), var(--accent-2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: gradientMove 5s infinite linear; font-family: "NoelFont", 'Poppins', sans-serif; }
 @keyframes gradientMove { 0% {background-position:0%} 100% {background-position:100%} }
 .hero .tagline { color: var(--accent); font-weight: 600; }
 .hero .intro { color: var(--muted); margin: 15px 0; }
+
+/* --- Buttons --- */
 .btn { padding: 12px 20px; border-radius: 12px; text-decoration: none; font-weight: 600; display: inline-block; transition: all 0.3s; }
 .btn.primary { background: linear-gradient(90deg, var(--accent), var(--accent-2)); color: #050507; }
 .btn.primary:hover { opacity: 0.85; transform: scale(1.05); }
+
+/* --- Hero Media --- */
 .hero-media img { width: 100%; border-radius: 16px; box-shadow: 0 30px 80px rgba(0,0,0,0.6); transition: transform 0.5s; }
 .hero-media img:hover { transform: scale(1.05); }
+
+/* --- Sections --- */
 section { padding: 60px 0; opacity: 0; transform: translateY(30px); transition: all 1s ease; }
 section.visible { opacity: 1; transform: translateY(0); }
 section h2 { font-size: 36px; margin-bottom: 20px; }
+
+/* --- Cards --- */
 .values, .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; }
 .card { background: rgba(255,255,255,0.02); padding: 20px; border-radius: var(--radius); border: 1px solid rgba(255,255,255,0.03); transition: all 0.5s ease, transform 0.3s; }
 .card:hover { transform: translateY(-6px) scale(1.05); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+
+/* --- Portfolio Grid --- */
 .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; margin-top: 20px; }
 .media-card { background: var(--card); border-radius: var(--radius); overflow: hidden; border: 1px solid rgba(255,255,255,0.03); opacity:0; transform: translateY(30px); transition: all 0.8s ease; }
 .media-card.visible { opacity:1; transform: translateY(0); }
+
+/* --- Contact --- */
 .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
 .contact-card { background: var(--card); padding: 18px; border-radius: var(--radius); }
 .contact-card a { color: var(--accent-2); text-decoration: none; }
 .contact-card form label { display: block; margin-bottom: 10px; }
 .contact-card input, .contact-card textarea { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); background: transparent; color: #e9e9ef; }
 .contact-card button { margin-top: 10px; }
+
+/* --- Footer --- */
 .site-footer { text-align: center; padding: 20px 0; border-top: 1px solid rgba(255,255,255,0.03); color: var(--muted); }
+
+/* --- Responsive --- */
 @media (max-width: 980px) { .hero { grid-template-columns: 1fr; } .nav { display: none; } .burger { display: block; } .contact-grid { grid-template-columns: 1fr; } }
 @media (max-width: 520px) { .hero h1 { font-size: 32px; } .logo { font-size: 20px; } }
+
+/* --- Neige de Noël --- */
+.snowflake {
+  position: fixed;
+  top: -10px;
+  color: white;
+  font-size: 12px;
+  opacity: 0.8;
+  pointer-events: none;
+  animation: fall linear infinite;
+  z-index: 9999;
+}
+@keyframes fall {
+  0% { transform: translateY(0) rotate(0deg); }
+  100% { transform: translateY(110vh) rotate(360deg); }
+}
 </style>
 
 </head>
@@ -58,7 +131,7 @@ section h2 { font-size: 36px; margin-bottom: 20px; }
 
 <header class="site-header">
 <div class="container">
-<a href="#hero" class="logo">Yohan Media</a>
+<a href="#hero" class="logo">Yohan Media </a>
 <nav class="nav">
 <a href="#hero">Accueil</a>
 <a href="#about">À propos</a>
@@ -73,7 +146,7 @@ section h2 { font-size: 36px; margin-bottom: 20px; }
 <section id="hero" class="hero">
 <div class="container hero-grid">
 <div class="hero-text">
-<h1>Yohan Media</h1>
+<h1>YOHAN MEDIA</h1>
 <p class="tagline">Contenu viral • Gestion réseaux • Partenariats</p>
 <p class="intro">On transforme vos idées en vidéos qui font vibrer vos audiences.</p>
 <a href="#contact" class="btn primary">Contact & Booking</a>
@@ -87,7 +160,12 @@ section h2 { font-size: 36px; margin-bottom: 20px; }
 <section id="about" class="about">
 <div class="container">
 <h2>À propos de nous</h2>
-<p>Yohan Media est une agence créative spécialisée dans la production de contenu viral, la gestion des réseaux sociaux et les partenariats stratégiques.</p>
+<p>Yohan Media est une agence créative spécialisée dans la production de contenu viral et la gestion stratégique des réseaux sociaux. Notre mission est simple : transformer chaque idée en une expérience visuelle forte, capable de captiver, engager et convertir les audiences.
+
+Nous accompagnons créateurs, entrepreneurs, artistes et marques dans leur croissance digitale grâce à une approche moderne : storytelling, tendances, stratégie intelligente et qualité visuelle.
+Avec nous, vos contenus ne passent pas inaperçus : ils marquent les esprits.
+
+Créativité, réactivité et résultats mesurables — c’est la signature Yohan Media.</p>
 <div class="values">
 <div class="card"><h3>Créativité</h3><p>Des idées originales et mémorables.</p></div>
 <div class="card"><h3>Résultats</h3><p>Contenu mesurable et performant.</p></div>
@@ -182,26 +260,20 @@ window.addEventListener('scroll', () => {
     if(rect.top < window.innerHeight - 100) sec.classList.add('visible');
   });
 });
+
+// --- Neige de Noël ---
+function createSnow() {
+  const snow = document.createElement("div");
+  snow.classList.add("snowflake");
+  snow.innerHTML = "❄";
+  snow.style.left = Math.random() * 100 + "vw";
+  snow.style.animationDuration = 4 + Math.random() * 4 + "s";
+  snow.style.opacity = Math.random();
+  document.body.appendChild(snow);
+  setTimeout(() => { snow.remove(); }, 8000);
+}
+setInterval(createSnow, 200);
 </script>
 
 </body>
 </html>
-
-<!-- Version complète avec Formspree intégrée -->
-
-<!-- Contact Form Updated -->
-<form id="contactForm"
-  action="https://formspree.io/f/mrbrglgp"
-  method="POST">
-
-  <input type="text" name="name" placeholder="Votre nom" required>
-  <input type="email" name="email" placeholder="Votre email" required>
-  <textarea name="message" rows="5" placeholder="Votre message" required></textarea>
-
-  <input type="hidden" name="_subject" value="Nouveau message — Yohan Media">
-  <input type="hidden" name="_redirect" value="merci.html">
-
-  <button type="submit">Envoyer</button>
-</form>
-<div class="loader" id="loader">Envoi...</div>
-
